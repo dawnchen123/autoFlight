@@ -1,0 +1,8 @@
+prefix=/home/dji/autoFlight/devel
+
+Name: dji_sdk
+Description: Description of dji_sdk
+Version: 3.2.0
+Cflags: -I/home/dji/autoFlight/devel/include -I/home/dji/autoFlight/src/dji_sdk/include
+Libs: -L/home/dji/autoFlight/devel/lib 
+Requires: message_runtime geometry_msgs nav_msgs std_msgs nmea_msgs

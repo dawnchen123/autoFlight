@@ -1,0 +1,2 @@
+dji_sdk:dji_sdk_demo:realsense-ros/realsense2_camera:realsense-ros/realsense2_description:rplidar_ros
+-DCATKIN_DEVEL_PREFIX=/home/dji/autoFlight/devel -DCMAKE_INSTALL_PREFIX=/home/dji/autoFlight/install -G Unix Makefiles
