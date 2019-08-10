@@ -1,8 +1,0 @@
-prefix=/home/dji/autoFlight/devel
-
-Name: realsense2_camera
-Description: Description of realsense2_camera
-Version: 2.2.7
-Cflags: -I/home/dji/autoFlight/devel/include
-Libs: -L/home/dji/autoFlight/devel/lib -lrealsense2_camera
-Requires: message_runtime roscpp sensor_msgs std_msgs nodelet cv_bridge image_transport ddynamic_reconfigure nav_msgs

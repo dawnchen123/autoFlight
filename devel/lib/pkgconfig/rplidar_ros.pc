@@ -1,8 +1,0 @@
-prefix=/home/dji/autoFlight/devel
-
-Name: rplidar_ros
-Description: Description of rplidar_ros
-Version: 1.10.0
-Cflags: 
-Libs: -L/home/dji/autoFlight/devel/lib 
-Requires: 
