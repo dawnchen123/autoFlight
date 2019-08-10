@@ -7,10 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/dji/autoFlight/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/dji/autoFlight/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH="/home/dji/autoFlight/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD="/home/dji/autoFlight/build"
-export PYTHONPATH="/home/dji/autoFlight/devel/lib/python2.7/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/dji/autoFlight/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/hp-dawn/桌面/Onboard-SDK-ROS-3.8/src:/home/hp-dawn/desktop/Onboard-SDK-ROS-3.8/src:/home/dji/Onboard-SDK-ROS-3.8/src:/home/dji/autoFlight/src:$ROS_PACKAGE_PATH"

@@ -217,3 +217,17 @@
 /home/dji/autoFlight/build/realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir
 /home/dji/autoFlight/build/realsense-ros/realsense2_camera/CMakeFiles/nodelet_generate_messages_eus.dir
 /home/dji/autoFlight/build/realsense-ros/realsense2_camera/CMakeFiles/diagnostic_msgs_generate_messages_py.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/install.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/rebuild_cache.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/list_install_components.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/install/strip.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/usb_cam_node.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/edit_cache.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/install/local.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/test.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/usb_cam.dir
+/home/dji/autoFlight/build/usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir

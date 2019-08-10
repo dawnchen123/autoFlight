@@ -1,0 +1,8 @@
+prefix=/home/dji/autoFlight/devel
+
+Name: usb_cam
+Description: Description of usb_cam
+Version: 0.3.6
+Cflags: -I/home/dji/autoFlight/src/usb_cam/include
+Libs: -L/home/dji/autoFlight/devel/lib -lusb_cam
+Requires: 

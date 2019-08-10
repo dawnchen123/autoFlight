@@ -246,7 +246,7 @@ gtest/preinstall: gtest/gtest/preinstall
 gtest/CMakeFiles/gmock_main.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gmock_main.dir/build.make gtest/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gmock_main.dir/build.make gtest/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=88,89 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=87,88 "Built target gmock_main"
 .PHONY : gtest/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -278,7 +278,7 @@ clean: gtest/CMakeFiles/gmock_main.dir/clean
 gtest/CMakeFiles/gmock.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gmock.dir/build.make gtest/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gmock.dir/build.make gtest/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=87 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=86 "Built target gmock"
 .PHONY : gtest/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -329,12 +329,12 @@ gtest/gtest/preinstall:
 gtest/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=90 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target gtest"
 .PHONY : gtest/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 gtest/gtest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 gtest/gtest/CMakeFiles/gtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : gtest/gtest/CMakeFiles/gtest.dir/rule
@@ -361,7 +361,7 @@ clean: gtest/gtest/CMakeFiles/gtest.dir/clean
 gtest/gtest/CMakeFiles/gtest_main.dir/all: gtest/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=89 "Built target gtest_main"
 .PHONY : gtest/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -549,7 +549,7 @@ dji_sdk/preinstall:
 dji_sdk/CMakeFiles/dji_sdk_node.dir/all: dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_node.dir/build.make dji_sdk/CMakeFiles/dji_sdk_node.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_node.dir/build.make dji_sdk/CMakeFiles/dji_sdk_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=83,84,85,86 "Built target dji_sdk_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=82,83,84,85 "Built target dji_sdk_node"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_node.dir/all
 
 # Include target in all.
@@ -559,7 +559,7 @@ all: dji_sdk/CMakeFiles/dji_sdk_node.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_node.dir/rule
@@ -694,7 +694,7 @@ dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/all: dji_sdk/CMakeFiles/
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/all: dji_sdk/CMakeFiles/_dji_sdk_generate_messages_check_deps_Stereo240pSubscription.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=52,53,54,55,56,57,58,59,60,61,62,63,64,65,66 "Built target dji_sdk_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=51,52,53,54,55,56,57,58,59,60,61,62,63,64,65 "Built target dji_sdk_generate_messages_nodejs"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -731,7 +731,7 @@ dji_sdk/CMakeFiles/dji_sdk_genlisp.dir/all: dji_sdk/CMakeFiles/dji_sdk_generate_
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_genlisp.dir/rule
@@ -763,7 +763,7 @@ dji_sdk/CMakeFiles/dji_sdk_geneus.dir/all: dji_sdk/CMakeFiles/dji_sdk_generate_m
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_geneus.dir/rule
@@ -834,12 +834,12 @@ dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/all: dji_sdk/CMakeFiles/_dj
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/all: dji_sdk/CMakeFiles/_dji_sdk_generate_messages_check_deps_Stereo240pSubscription.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 "Built target dji_sdk_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 "Built target dji_sdk_generate_messages_eus"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_eus.dir/rule
@@ -871,7 +871,7 @@ dji_sdk/CMakeFiles/dji_sdk_gencpp.dir/all: dji_sdk/CMakeFiles/dji_sdk_generate_m
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_gencpp.dir/rule
@@ -912,7 +912,7 @@ all: dji_sdk/CMakeFiles/dji_sdk_generate_messages.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 77
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 76
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages.dir/rule
@@ -1591,7 +1591,7 @@ dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/all: dji_sdk/CMakeFiles/_dji
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/all: dji_sdk/CMakeFiles/_dji_sdk_generate_messages_check_deps_Stereo240pSubscription.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82 "Built target dji_sdk_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81 "Built target dji_sdk_generate_messages_py"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2083,12 +2083,12 @@ dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/all: dji_sdk/CMakeFiles/_d
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/all: dji_sdk/CMakeFiles/_dji_sdk_generate_messages_check_deps_Stereo240pSubscription.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44,45,46,47,48,49,50,51 "Built target dji_sdk_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Built target dji_sdk_generate_messages_lisp"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_lisp.dir/rule
@@ -3567,12 +3567,12 @@ dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/all: dji_sdk/CMakeFiles/_dj
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/all: dji_sdk/CMakeFiles/_dji_sdk_generate_messages_check_deps_Stereo240pSubscription.dir/all
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/depend
 	$(MAKE) -f dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/build.make dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 "Built target dji_sdk_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target dji_sdk_generate_messages_cpp"
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk/CMakeFiles/dji_sdk_generate_messages_cpp.dir/rule
@@ -3710,7 +3710,7 @@ all: dji_sdk_demo/CMakeFiles/demo_camera_gimbal.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_camera_gimbal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_camera_gimbal.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_camera_gimbal.dir/rule
@@ -3843,7 +3843,7 @@ all: dji_sdk_demo/CMakeFiles/demo_mfio.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_mfio.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_mfio.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_mfio.dir/rule
@@ -3880,7 +3880,7 @@ all: dji_sdk_demo/CMakeFiles/demo_mission.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_mission.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_mission.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_mission.dir/rule
@@ -3917,7 +3917,7 @@ all: dji_sdk_demo/CMakeFiles/demo_mobile_comm.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_mobile_comm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_mobile_comm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_mobile_comm.dir/rule
@@ -3954,7 +3954,7 @@ all: dji_sdk_demo/CMakeFiles/demo_flight_control.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_flight_control.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_flight_control.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_flight_control.dir/rule
@@ -3991,7 +3991,7 @@ all: dji_sdk_demo/CMakeFiles/demo_payload_comm.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_payload_comm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_payload_comm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_payload_comm.dir/rule
@@ -4028,7 +4028,7 @@ all: dji_sdk_demo/CMakeFiles/demo_local_position_control.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_local_position_control.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_local_position_control.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_local_position_control.dir/rule
@@ -4065,7 +4065,7 @@ all: dji_sdk_demo/CMakeFiles/demo_time_sync.dir/all
 
 # Build rule for subdir invocation for target.
 dji_sdk_demo/CMakeFiles/demo_time_sync.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 dji_sdk_demo/CMakeFiles/demo_time_sync.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : dji_sdk_demo/CMakeFiles/demo_time_sync.dir/rule
@@ -4112,7 +4112,7 @@ rplidar_ros/preinstall:
 rplidar_ros/CMakeFiles/rplidarNodeClient.dir/all:
 	$(MAKE) -f rplidar_ros/CMakeFiles/rplidarNodeClient.dir/build.make rplidar_ros/CMakeFiles/rplidarNodeClient.dir/depend
 	$(MAKE) -f rplidar_ros/CMakeFiles/rplidarNodeClient.dir/build.make rplidar_ros/CMakeFiles/rplidarNodeClient.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=100 "Built target rplidarNodeClient"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=98 "Built target rplidarNodeClient"
 .PHONY : rplidar_ros/CMakeFiles/rplidarNodeClient.dir/all
 
 # Include target in all.
@@ -4149,7 +4149,7 @@ clean: rplidar_ros/CMakeFiles/rplidarNodeClient.dir/clean
 rplidar_ros/CMakeFiles/rplidarNode.dir/all:
 	$(MAKE) -f rplidar_ros/CMakeFiles/rplidarNode.dir/build.make rplidar_ros/CMakeFiles/rplidarNode.dir/depend
 	$(MAKE) -f rplidar_ros/CMakeFiles/rplidarNode.dir/build.make rplidar_ros/CMakeFiles/rplidarNode.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=97,98,99 "Built target rplidarNode"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=96,97 "Built target rplidarNode"
 .PHONY : rplidar_ros/CMakeFiles/rplidarNode.dir/all
 
 # Include target in all.
@@ -4159,7 +4159,7 @@ all: rplidar_ros/CMakeFiles/rplidarNode.dir/all
 
 # Build rule for subdir invocation for target.
 rplidar_ros/CMakeFiles/rplidarNode.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 rplidar_ros/CMakeFiles/rplidarNode.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : rplidar_ros/CMakeFiles/rplidarNode.dir/rule
@@ -4321,7 +4321,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_n
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/all: realsense-ros/realsense2_camera/CMakeFiles/_realsense2_camera_generate_messages_check_deps_IMUInfo.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=95 "Built target realsense2_camera_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=94 "Built target realsense2_camera_generate_messages_nodejs"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -4358,7 +4358,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_geneus.dir/all: rea
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_geneus.dir/rule
@@ -4452,12 +4452,12 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_c
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/all: realsense-ros/realsense2_camera/CMakeFiles/_realsense2_camera_generate_messages_check_deps_IMUInfo.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target realsense2_camera_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=91 "Built target realsense2_camera_generate_messages_cpp"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_cpp.dir/rule
@@ -4498,7 +4498,7 @@ all: realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messa
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages.dir/rule
@@ -4629,7 +4629,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/all: realsense-
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/all: realsense-ros/realsense2_camera/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=91,92 "Built target realsense2_camera"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=90 "Built target realsense2_camera"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/all
 
 # Include target in all.
@@ -5023,7 +5023,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_genlisp.dir/all: re
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_genlisp.dir/rule
@@ -5117,7 +5117,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_p
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/all: realsense-ros/realsense2_camera/CMakeFiles/_realsense2_camera_generate_messages_check_deps_IMUInfo.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=96 "Built target realsense2_camera_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=95 "Built target realsense2_camera_generate_messages_py"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -5664,12 +5664,12 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_e
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/all: realsense-ros/realsense2_camera/CMakeFiles/_realsense2_camera_generate_messages_check_deps_IMUInfo.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=93,94 "Built target realsense2_camera_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=92 "Built target realsense2_camera_generate_messages_eus"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_eus.dir/rule
@@ -5701,7 +5701,7 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_gencpp.dir/all: rea
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_gencpp.dir/rule
@@ -5859,12 +5859,12 @@ realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_l
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/all: realsense-ros/realsense2_camera/CMakeFiles/_realsense2_camera_generate_messages_check_deps_IMUInfo.dir/all
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/depend
 	$(MAKE) -f realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/build.make realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target realsense2_camera_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=93 "Built target realsense2_camera_generate_messages_lisp"
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
 .PHONY : realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera_generate_messages_lisp.dir/rule
@@ -5945,6 +5945,265 @@ realsense-ros/realsense2_camera/CMakeFiles/diagnostic_msgs_generate_messages_py.
 
 # clean rule for target.
 clean: realsense-ros/realsense2_camera/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory usb_cam
+
+# Convenience name for "all" pass in the directory.
+usb_cam/all: usb_cam/CMakeFiles/usb_cam_node.dir/all
+usb_cam/all: usb_cam/CMakeFiles/usb_cam.dir/all
+
+.PHONY : usb_cam/all
+
+# Convenience name for "clean" pass in the directory.
+usb_cam/clean: usb_cam/CMakeFiles/usb_cam_node.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/usb_cam.dir/clean
+usb_cam/clean: usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean
+
+.PHONY : usb_cam/clean
+
+# Convenience name for "preinstall" pass in the directory.
+usb_cam/preinstall:
+
+.PHONY : usb_cam/preinstall
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/usb_cam_node.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/usb_cam_node.dir/all: usb_cam/CMakeFiles/usb_cam.dir/all
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam_node.dir/build.make usb_cam/CMakeFiles/usb_cam_node.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam_node.dir/build.make usb_cam/CMakeFiles/usb_cam_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=100 "Built target usb_cam_node"
+.PHONY : usb_cam/CMakeFiles/usb_cam_node.dir/all
+
+# Include target in all.
+all: usb_cam/CMakeFiles/usb_cam_node.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/usb_cam_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/usb_cam_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/usb_cam_node.dir/rule
+
+# Convenience name for target.
+usb_cam_node: usb_cam/CMakeFiles/usb_cam_node.dir/rule
+
+.PHONY : usb_cam_node
+
+# clean rule for target.
+usb_cam/CMakeFiles/usb_cam_node.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam_node.dir/build.make usb_cam/CMakeFiles/usb_cam_node.dir/clean
+.PHONY : usb_cam/CMakeFiles/usb_cam_node.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/usb_cam_node.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target std_srvs_generate_messages_cpp"
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_cpp: usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+
+.PHONY : std_srvs_generate_messages_cpp
+
+# clean rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target std_srvs_generate_messages_eus"
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_eus: usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
+
+.PHONY : std_srvs_generate_messages_eus
+
+# clean rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/clean
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/std_srvs_generate_messages_eus.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target std_srvs_generate_messages_lisp"
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_lisp: usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
+
+.PHONY : std_srvs_generate_messages_lisp
+
+# clean rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/clean
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/std_srvs_generate_messages_lisp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target std_srvs_generate_messages_py"
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_py: usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+
+.PHONY : std_srvs_generate_messages_py
+
+# clean rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/std_srvs_generate_messages_py.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/usb_cam.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/usb_cam.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam.dir/build.make usb_cam/CMakeFiles/usb_cam.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam.dir/build.make usb_cam/CMakeFiles/usb_cam.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num=99 "Built target usb_cam"
+.PHONY : usb_cam/CMakeFiles/usb_cam.dir/all
+
+# Include target in all.
+all: usb_cam/CMakeFiles/usb_cam.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/usb_cam.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/usb_cam.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/usb_cam.dir/rule
+
+# Convenience name for target.
+usb_cam: usb_cam/CMakeFiles/usb_cam.dir/rule
+
+.PHONY : usb_cam
+
+# clean rule for target.
+usb_cam/CMakeFiles/usb_cam.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/usb_cam.dir/build.make usb_cam/CMakeFiles/usb_cam.dir/clean
+.PHONY : usb_cam/CMakeFiles/usb_cam.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/usb_cam.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dji/autoFlight/build/CMakeFiles --progress-num= "Built target std_srvs_generate_messages_nodejs"
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dji/autoFlight/build/CMakeFiles 0
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_srvs_generate_messages_nodejs: usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_srvs_generate_messages_nodejs
+
+# clean rule for target.
+usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean
+.PHONY : usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: usb_cam/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean
 
 .PHONY : clean
 

@@ -122,6 +122,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/dji/autoFlight/build/dji_sdk_demo/cmake_install.cmake")
   include("/home/dji/autoFlight/build/rplidar_ros/cmake_install.cmake")
   include("/home/dji/autoFlight/build/realsense-ros/realsense2_camera/cmake_install.cmake")
+  include("/home/dji/autoFlight/build/usb_cam/cmake_install.cmake")
 
 endif()
 
