@@ -1,0 +1,12 @@
+<launch>
+    <node pkg="dji_sdk" type="dji_sdk_node" name="dji_sdk" output="screen">
+    <!-- node parameters -->
+    <param name="serial_name" type="string" value="/dev/ttyUSB0"/>
+    <param name="baud_rate" type="int" value="230400"/>
+    <param name="app_id" type="int" value="1050597"/>
+    <param name="app_version" type="int" value="1"/>
+    <param name="align_time" type="bool" value="false"/>
+    <param name="enc_key" type="string" value="0d1e1431ae40bfdbf92da61213f931bd4eca93d4a5879bb82913cc8c93a1bf55"/>
+    <param name="use_broadcast" type="bool" value="false"/>
+    </node>
+</launch>

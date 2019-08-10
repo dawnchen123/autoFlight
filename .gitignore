@@ -1,6 +1,4 @@
-./CMakeLists.txt
-*.swn
-*.swo
-*.swp
-*sdk.launch
-build.sh
+build/
+devel/
+.kdev4/
+.vscode/
