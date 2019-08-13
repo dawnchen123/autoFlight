@@ -25,19 +25,18 @@
 #include <dji_sdk/SDKControlAuthority.h>
 #include <dji_sdk/QueryDroneVersion.h>
 
-
-
-#include<ros/ros.h> 
-#include<cv_bridge/cv_bridge.h> 
-#include<sensor_msgs/image_encodings.h> 
-#include<image_transport/image_transport.h> 
-#include<opencv2/opencv.hpp> 
-#include<opencv2/highgui/highgui.hpp>
-#include<opencv2/imgproc/imgproc.hpp> 
-#include<stdio.h> 
-#include<math.h> 
-#include<vector> 
-#include<iostream>
+#include <std_msgs/Float32.h>
+#include <sensor_msgs/LaserScan.h>
+#include <cv_bridge/cv_bridge.h> 
+#include <sensor_msgs/image_encodings.h> 
+#include <image_transport/image_transport.h> 
+#include <opencv2/opencv.hpp> 
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp> 
+#include <stdio.h> 
+#include <math.h> 
+#include <vector> 
+#include <iostream>
 #include <chrono>
 bool set_local_position();
 
@@ -142,3 +141,5 @@ public:
 };
 
 void imageCalllback(const sensor_msgs::ImageConstPtr& msg); 
+void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
+void heightCallback(const std_msgs::Float32::ConstPtr& msg);

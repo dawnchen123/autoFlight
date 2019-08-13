@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find dji_sdk)/launch/sdk.launch" />
+    <include file="$(find usb_cam)/launch/usb_cam.launch" />
+    <include file="$(find rplidar_ros)/launch/rplidar_a3.launch" /> 
+</launch>
