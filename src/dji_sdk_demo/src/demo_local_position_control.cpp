@@ -179,7 +179,7 @@ void imageCalllback(const sensor_msgs::ImageConstPtr& msg)
         center_count++; 
         ROS_INFO("CenterCount: %d",center_count);
       }
-      if(center_count>200) {
+      if(center_count>150) {
         // land_flag = true;
         scan_adjust_flag = true;
         center_count=0;
@@ -194,7 +194,7 @@ void imageCalllback(const sensor_msgs::ImageConstPtr& msg)
           forward_speed = 0.3;
       }
       roll2 = rightDistance+leftDistance;
-      throttle2 = 1.4-dji_altitude;
+      throttle2 = 1.3-dji_altitude;
       controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
@@ -207,7 +207,7 @@ void imageCalllback(const sensor_msgs::ImageConstPtr& msg)
 
       ROS_INFO("roll2: %.2f, pitch2: %.2f, thro2: %.2f",roll2,forward_speed,throttle2);
 
-      if(left_angle>80 && abs(rightDistance)>0.6 && abs(leftDistance)>0.6) {
+      if(left_angle>50 && abs(rightDistance)>0.6 && abs(leftDistance)>0.6) {
         cross_flag = true;
         scan_adjust_flag = false;
         ROS_INFO("Ready to cross!");
@@ -224,7 +224,7 @@ void imageCalllback(const sensor_msgs::ImageConstPtr& msg)
       controlVelYawRate.axes.clear();                //Very Important!!!!
       ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
       ROS_INFO("cross control \n");
-      if(left_angle>130) {
+      if(left_angle>140) {
         land_flag = true;
         cross_flag = false;
       }

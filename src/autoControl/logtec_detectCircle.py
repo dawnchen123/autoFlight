@@ -13,7 +13,7 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import LaserScan
 
 # 颜色阈值下界(HSV) lower boudnary
-lowerb = (0, 24, 121) 
+lowerb = (0, 57, 115)   #0, 24, 121
 # 颜色阈值上界(HSV) upper boundary
 upperb = (255, 255, 255)
 
@@ -72,7 +72,7 @@ def scan_callback(msg):
     circle_angle = []
     #print(len(msg.ranges))   #1440 max
     for i in range(len(msg.ranges)):
-        if(msg.ranges[i]<2 and msg.ranges[i]>0.5):
+        if(msg.ranges[i]<3 and msg.ranges[i]>0.5):
             tmp_angle = math.pi*2*i/1440
             tmp_radius = math.sin(tmp_angle)*msg.ranges[i]
             #print(i,msg.ranges[i])
