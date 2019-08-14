@@ -25,6 +25,8 @@
 #include <dji_sdk/SDKControlAuthority.h>
 #include <dji_sdk/QueryDroneVersion.h>
 
+#include <nav_msgs/Odometry.h>
+
 #include <std_msgs/Float32.h>
 #include <sensor_msgs/LaserScan.h>
 #include <cv_bridge/cv_bridge.h> 
@@ -140,6 +142,7 @@ public:
 	}
 };
 
-void imageCalllback(const sensor_msgs::ImageConstPtr& msg); 
+// void imageCalllback(const sensor_msgs::ImageConstPtr& msg); 
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
 void heightCallback(const std_msgs::Float32::ConstPtr& msg);
+void odomCallback(const nav_msgs::Odometry::ConstPtr& msg);

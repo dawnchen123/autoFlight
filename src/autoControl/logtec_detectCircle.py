@@ -72,11 +72,11 @@ def scan_callback(msg):
     circle_angle = []
     #print(len(msg.ranges))   #1440 max
     for i in range(len(msg.ranges)):
-        if(msg.ranges[i]<3 and msg.ranges[i]>0.5):
+        if(msg.ranges[i]<2 and msg.ranges[i]>0.5):
             tmp_angle = math.pi*2*i/1440
             tmp_radius = math.sin(tmp_angle)*msg.ranges[i]
             #print(i,msg.ranges[i])
-            if(abs(tmp_radius)>0.55 and abs(tmp_radius)<0.85):
+            if(abs(tmp_radius)>0.5 and abs(tmp_radius)<0.9):    #old:0.55,0.85
                 circle_distance.append(tmp_radius)
                 #print(abs(tmp_radius))
                 circle_angle.append(360*i/1440)
@@ -88,10 +88,10 @@ def scan_callback(msg):
 
 def listener():
     rospy.init_node("usb_cam", anonymous=True)
-    zed_topic = "/usb_cam/image_raw"
+    # zed_topic = "/usb_cam/image_raw"
     scan_topic = "/scan"
 
-    rospy.Subscriber(zed_topic, Image, image_callback)
+    # rospy.Subscriber(zed_topic, Image, image_callback)
     rospy.Subscriber(scan_topic, LaserScan, scan_callback)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

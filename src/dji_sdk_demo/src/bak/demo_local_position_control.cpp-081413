@@ -42,7 +42,9 @@ int circle_x, circle_y, radius;
 float pitch1,roll1,throttle1;
 float roll2,throttle2;
 float Yaw1 = 0.0;
-float exp_altitude = 1.3;
+float rightDistance = 0.7;
+float leftDistance = -0.7;
+
 float right_forward_angle = 0;
 float right_back_angle = 0;
 float left_forward_angle = 0;
@@ -105,13 +107,11 @@ int main(int argc, char** argv)
   ctrlFlightPub = nh.advertise<sensor_msgs::Joy>("dji_sdk/flight_control_setpoint_generic", 10);
 
   image_transport::ImageTransport it(nh);
-  // image_transport::Subscriber sub = it.subscribe( "/circle/position", 1, imageCalllback );
+  image_transport::Subscriber sub = it.subscribe( "/circle/position", 1, imageCalllback );
 
   ros::Subscriber scanSub = nh.subscribe("/circle/scan", 1, &laserCallback);
 
   ros::Subscriber heightSub = nh.subscribe("/dji_sdk/height_above_takeoff", 1, &heightCallback);
-
-  ros::Subscriber odomSub = nh.subscribe("/camera/odom/sample", 1, &odomCallback);
 
 
   // Publish the control signal
@@ -143,8 +143,8 @@ int main(int argc, char** argv)
   }
 
 
-// void imageCalllback(const sensor_msgs::ImageConstPtr& msg) 
-// {
+void imageCalllback(const sensor_msgs::ImageConstPtr& msg) 
+{
     // cv::Mat img;
     // float center_distance=0;
     // //ROS_INFO("Received \n");
@@ -252,20 +252,13 @@ int main(int argc, char** argv)
     //     ROS_INFO("M100 Landing!");
     //     M100monitoredLand();
     //   }   
-// } 
+} 
 
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
-  right_forward_Distance = 0;
-  right_forward_angle = 0;
-  right_back_angle = 0;
-  right_back_Distance = 0;
-  left_forward_angle = 0;
-  left_forward_Distance = 0;
-  left_back_angle = 0;
-  left_back_Distance = 0;
   std::vector<float> scanDistance=msg->ranges;
   std::vector<float> scanRange=msg->intensities;
+  
   for(int i=0;i<scanDistance.size();i++)
   {
     if(scanRange[i]>270){
@@ -280,26 +273,17 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       left_forward_angle = scanRange[i];
       left_forward_Distance = scanDistance[i];
     }
-    if(scanRange[i]<180&&scanRange[i]>90) {
+    if(sscanRange[i]<180&&scanRange[i]>90) {
       left_back_angle = scanRange[i];
       left_back_Distance = scanDistance[i];
     }
   }
-  
-  if(right_forward_Distance != 0 && left_forward_Distance != 0){
+  if(right_forward_Distance != 0 &&left_forward_Distance != 0){
     // when find circle
     search_circle_flag = true;
     //begin_cross_flag = true;
-    //choose a suitable altitude
-    if(fabs(right_forward_Distance)+fabs(left_forward_Distance)<1.2){
-      if(dji_altitude<1.5){
-        exp_altitude=1.7;
-      }
-      if(dji_altitude>=1.5){
-        exp_altitude=1.3;
-      }
-    }
-  }else if(left_back_angle>135 && right_back_angle<225 && first_circle_flag){
+    circle_count++;
+  }else if(left_back_angle>135&&right_back_angle>225&&first_circle_flag){
     //has been crossed the circle
     search_circle_flag = false;
     cross_flag = false;
@@ -311,9 +295,9 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 ///////////////////////////////////////// for search circle
 
   if(takeoff_flag && !search_circle_flag){
-      ROS_INFO("Find next circle");
+    //实时定高
     //search_circle_flag: true --> none cercle detect
-      throttle2 = exp_altitude-dji_altitude;
+      throttle2 = 1.3-dji_altitude;
       controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0.2*direction_y);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
@@ -332,15 +316,15 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     }
 ///////////////////////////////////////// for search circle
 
-    if(scan_adjust_flag && takeoff_flag && search_circle_flag) {
-      if(fabs(right_forward_Distance)<0.55||fabs(left_forward_Distance)<0.55) {
+    if(scan_adjust_flag&&takeoff_flag&&search_circle_flag&&!finished_cross_flag) {
+      if(fabs(rightDistance)<0.55||fabs(leftDistance)<0.55) {
         forward_speed = 0;
         ROS_INFO("ERROR");
       } else {
           forward_speed = 0.3;
       }
       roll2 = right_forward_Distance+left_forward_Distance;
-      throttle2 = exp_altitude-dji_altitude;
+      throttle2 = 1.3-dji_altitude;
       controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
@@ -348,16 +332,15 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();                //Very Important!!!!
-      ROS_INFO("left_forward_Distance: %.2f, right_forward_Distance: %.2f",left_forward_Distance,right_forward_Distance);
+      ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
       ROS_INFO("scan adjust control \n");
 
       ROS_INFO("roll2: %.2f, pitch2: %.2f, thro2: %.2f",roll2,forward_speed,throttle2);
 
-      if(left_forward_angle>50 && fabs(right_forward_Distance)>0.6 && fabs(left_forward_Distance)>0.6) {
+      if(left_angle>50 && abs(rightDistance)>0.6 && abs(leftDistance)>0.6) {
         cross_flag = true;
         scan_adjust_flag = false;
         first_circle_flag = true;
-        circle_count++;
         ROS_INFO("Ready to cross!");
       }
     }
@@ -370,7 +353,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();                //Very Important!!!!
-      ROS_INFO("left_forward_Distance: %.2f, right_forward_Distance: %.2f",left_forward_Distance,right_forward_Distance);
+      ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
       ROS_INFO("cross control \n");
       // if(left_angle>140) {
       //   land_flag = true;
@@ -394,11 +377,6 @@ void heightCallback(const std_msgs::Float32::ConstPtr& msg)
   }
 }
 
-void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
-{
-  distance_t265_y = msg->pose.pose.position.y;
-  // ROS_INFO("position: %.2f",distance_t265_y);
-}
 
 
 bool takeoff_land(int task)
