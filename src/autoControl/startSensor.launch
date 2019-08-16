@@ -3,4 +3,5 @@
     <include file="$(find rplidar_ros)/launch/rplidar_a3.launch" /> 
     <include file="$(find realsense2_camera)/launch/rs_t265.launch" />
     <include file="$(find usb_cam)/launch/usb_cam.launch" />
+    <include file="$(find ultrasonic)/launch/ultrasonic.launch" />
 </launch>

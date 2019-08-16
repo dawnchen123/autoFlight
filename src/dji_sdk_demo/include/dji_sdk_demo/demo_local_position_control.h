@@ -146,3 +146,4 @@ public:
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
 void heightCallback(const std_msgs::Float32::ConstPtr& msg);
 void odomCallback(const nav_msgs::Odometry::ConstPtr& msg);
+float speedLimit(float min_Speed,float speed,float max_Speed);

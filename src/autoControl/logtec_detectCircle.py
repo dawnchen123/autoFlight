@@ -72,14 +72,14 @@ def scan_callback(msg):
     circle_angle = []
     #print(len(msg.ranges))   #1440 max
     for i in range(len(msg.ranges)):
-        if(msg.ranges[i]<2 and msg.ranges[i]>0.5):
-            tmp_angle = math.pi*2*i/1440
-            tmp_radius = math.sin(tmp_angle)*msg.ranges[i]
+        if(msg.ranges[i]<3 and msg.ranges[i]>0.5):
+            # tmp_angle = math.pi*2*i/1440
+            # tmp_radius = math.sin(tmp_angle)*msg.ranges[i]
             #print(i,msg.ranges[i])
-            if(abs(tmp_radius)>0.5 and abs(tmp_radius)<0.9):    #old:0.55,0.85
-                circle_distance.append(tmp_radius)
+            # if(abs(tmp_radius)>0.5 and abs(tmp_radius)<0.9):    #old:0.55,0.85
+            circle_distance.append(msg.ranges[i])
                 #print(abs(tmp_radius))
-                circle_angle.append(360*i/1440)
+            circle_angle.append(360*i/1440)
     circleScan.ranges = circle_distance
     circleScan.intensities = circle_angle
     pubScan.publish(circleScan)

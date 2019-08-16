@@ -1,0 +1,4 @@
+<launch>
+  <node name="ultrasonic" pkg="ultrasonic" type="ultrasonic_node" output="screen" >
+  </node>
+</launch>

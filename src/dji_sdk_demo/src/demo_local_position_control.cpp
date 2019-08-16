@@ -11,6 +11,8 @@
 
 #include "dji_sdk_demo/demo_local_position_control.h"
 #include "dji_sdk/dji_sdk.h"
+#include "cmath"
+#include "time.h"
 //#include <dji_sdk/dji_control.h>
 
 
@@ -42,27 +44,42 @@ int circle_x, circle_y, radius;
 float pitch1,roll1,throttle1;
 float roll2,throttle2;
 float Yaw1 = 0.0;
-float exp_altitude = 1.3;
+float exp_altitude = 1.5;
 float right_forward_angle = 0;
 float right_back_angle = 0;
 float left_forward_angle = 0;
 float left_back_angle = 0;
-float right_forward_Distance = 0;
-float left_forward_Distance = 0;
-float right_back_Distance = 0;
-float left_back_Distance = 0;
-
+float right_forward_distancex = 0;
+float right_forward_distancey = 0;
+float left_forward_distancex = 0;
+float left_forward_distancey = 0;
+float temp_right_forward_distancex = 0;
+float temp_left_forward_distancex = 0;
+float left_boundary_distane= 0;
+float right_boundary_distane= 0;
+float forward_boundary_distane= 0;
+float back_boundary_distane= 0;
+float cross_begin_position = 0;
+float now_time = 0;
+float right_back_distance = 0;
+float left_back_distance = 0;
+float original_distance = 0;
+float scanrange_radian = 0;
 float forward_speed = 0.3;
 float dji_altitude = 0;
 float distance_t265_y = 0;
+float distance_t265_x = 0;
 int direction_y = 1;
 bool search_circle_flag = false;
-bool finished_cross_flag = false;
+bool finished_cross_flag = true;
 bool first_circle_flag = false;
 bool begin_cross_flag = false;
+bool has_seem_flag = false;
 int right_angle = 0;
 int left_angle = 0;
 int circle_count = 0;
+
+clock_t cross_begin_time;
 // new these 3 parameters for pid control. pidx for roll, pidy for pitch, pidz for throttle.
 PidController pidx,pidy,pidz;
 
@@ -72,7 +89,7 @@ bool pidflag = true;
 bool takeoff_flag = false;
 bool land_flag = false;
 bool cross_flag = false;
-bool scan_adjust_flag = true;
+bool scan_adjust_flag = false;
 
 int center_count = 0;
 
@@ -90,7 +107,7 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
   // Subscribe to messages from dji_sdk_node
   ros::Subscriber flightStatusSub = nh.subscribe("dji_sdk/flight_status", 10, &flight_status_callback);
-  ros::Subscriber displayModeSub = nh.subscribe("dji_sdk/display_mode", 10, &display_mode_callback);
+  ros::Subscriber DisplayModeSub = nh.subscribe("dji_sdk/Display_mode", 10, &display_mode_callback);
   //ros::Subscriber localPosition = nh.subscribe("dji_sdk/local_position", 10, &local_position_callback);
   ros::Subscriber gpsSub      = nh.subscribe("dji_sdk/gps_position", 10, &gps_position_callback);
   ros::Subscriber gpsHealth      = nh.subscribe("dji_sdk/gps_health", 10, &gps_health_callback);
@@ -109,7 +126,7 @@ int main(int argc, char** argv)
 
   ros::Subscriber scanSub = nh.subscribe("/circle/scan", 1, &laserCallback);
 
-  ros::Subscriber heightSub = nh.subscribe("/dji_sdk/height_above_takeoff", 1, &heightCallback);
+  ros::Subscriber heightSub = nh.subscribe("/ultraSonic/height", 1, &heightCallback);
 
   ros::Subscriber odomSub = nh.subscribe("/camera/odom/sample", 1, &odomCallback);
 
@@ -130,7 +147,6 @@ int main(int argc, char** argv)
   {
     ROS_INFO("M100 taking off!");
     takeoff_result = M100monitoredTakeoff();  
-    takeoff_flag = true;
   }
   else
   {
@@ -189,7 +205,7 @@ int main(int argc, char** argv)
   //     ROS_INFO("roll1: %.2f, pitch1: %.2f, thro1: %.2f",roll1,pitch1,throttle1);
 
   //     center_distance = (float)(circle_x-160)*(circle_x-160)+(circle_y-120)*(circle_y-120);
-  //     ROS_INFO("Distance_Center: %.2f",center_distance);
+  //     ROS_INFO("distance_Center: %.2f",center_distance);
 
   //     if(center_distance<100 && abs(radius-160)<30) {
   //       center_count++; 
@@ -203,13 +219,13 @@ int main(int argc, char** argv)
 
   //   } 
     // if(scan_adjust_flag&&takeoff_flag&&search_circle_flag&&!finished_cross_flag) {
-    //   if(fabs(rightDistance)<0.55||fabs(leftDistance)<0.55) {
+    //   if(fabs(rightdistance)<0.55||fabs(leftdistance)<0.55) {
     //     forward_speed = 0;
     //     ROS_INFO("ERROR");
     //   } else {
     //       forward_speed = 0.3;
     //   }
-    //   roll2 = right_forward_Distance+left_forward_Distance;
+    //   roll2 = right_forward_distance+left_forward_distance;
     //   throttle2 = 1.3-dji_altitude;
     //   controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
     //   controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
@@ -218,12 +234,12 @@ int main(int argc, char** argv)
     //   controlVelYawRate.axes.push_back(flag);
     //   ctrlFlightPub.publish(controlVelYawRate);
     //   controlVelYawRate.axes.clear();                //Very Important!!!!
-    //   ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
+    //   ROS_INFO("leftdistance: %.2f, rightdistance: %.2f",leftdistance,rightdistance);
     //   ROS_INFO("scan adjust control \n");
 
     //   ROS_INFO("roll2: %.2f, pitch2: %.2f, thro2: %.2f",roll2,forward_speed,throttle2);
 
-    //   if(left_angle>50 && abs(rightDistance)>0.6 && abs(leftDistance)>0.6) {
+    //   if(left_angle>50 && abs(rightdistance)>0.6 && abs(leftdistance)>0.6) {
     //     cross_flag = true;
     //     scan_adjust_flag = false;
     //     first_circle_flag = true;
@@ -239,7 +255,7 @@ int main(int argc, char** argv)
     //   controlVelYawRate.axes.push_back(flag);
     //   ctrlFlightPub.publish(controlVelYawRate);
     //   controlVelYawRate.axes.clear();                //Very Important!!!!
-    //   ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
+    //   ROS_INFO("leftdistance: %.2f, rightdistance: %.2f",leftdistance,rightdistance);
     //   ROS_INFO("cross control \n");
     //   // if(left_angle>140) {
     //   //   land_flag = true;
@@ -256,64 +272,120 @@ int main(int argc, char** argv)
 
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
-  right_forward_Distance = 0;
+  right_forward_distancex = 0;
   right_forward_angle = 0;
   right_back_angle = 0;
-  right_back_Distance = 0;
+  right_back_distance = 0;
+
+  temp_right_forward_distancex = 0;
+  temp_left_forward_distancex = 0;
+
   left_forward_angle = 0;
-  left_forward_Distance = 0;
+  left_forward_distancex = 0;
   left_back_angle = 0;
-  left_back_Distance = 0;
-  std::vector<float> scanDistance=msg->ranges;
-  std::vector<float> scanRange=msg->intensities;
-  for(int i=0;i<scanDistance.size();i++)
+  left_back_distance = 0;
+
+  right_boundary_distane = 3;
+  left_boundary_distane = 3;
+  //right_forward_distancey = 0;
+  //left_forward_distancey = 0;
+  //change the data of A3 lidar!!!!!!!!!!!!! 
+  //   original_distance-->meter   original_angle-->radian
+  std::vector<float> scandistance=msg->ranges;
+  std::vector<float> scanrange=msg->intensities;
+  
+  for(int i=0;i<scandistance.size();i++)
   {
-    if(scanRange[i]>270){
-      right_forward_angle = scanRange[i];
-      right_forward_Distance = scanDistance[i];
+    scanrange_radian = scanrange[i]/180*3.14159;
+    if(scanrange[i]>285){
+      temp_right_forward_distancex = scandistance[i]*sin(scanrange_radian);
+      if(scandistance[i]*sin(scanrange_radian)>-0.85 && scandistance[i]*sin(scanrange_radian)<-0.55){
+        right_forward_angle = scanrange[i];
+        right_forward_distancex = scandistance[i]*sin(scanrange_radian);
+      }
+      //right_forward_distancey = fabs(right_forward_distancex/)
     }
-    if(scanRange[i]>180&&scanRange[i]<270){
-      right_back_angle = scanRange[i];
-      right_back_Distance = scanDistance[i];
+    if(scanrange[i]>195&&scanrange[i]<255){
+      if(scandistance[i]*sin(scanrange_radian)>-0.85 && scandistance[i]*sin(scanrange_radian)<-0.55){
+        right_back_angle = scanrange[i];
+        right_back_distance = fabs(scandistance[i]*sin(scanrange_radian));
+      }
     }
-    if(scanRange[i]<90) {
-      left_forward_angle = scanRange[i];
-      left_forward_Distance = scanDistance[i];
+    if(scanrange[i]>15 && scanrange[i]<75) {
+       temp_left_forward_distancex = scandistance[i]*sin(scanrange_radian);
+      if(scandistance[i]*sin(scanrange_radian)<0.85 && scandistance[i]*sin(scanrange_radian)>0.55){
+        left_forward_angle = scanrange[i];
+        left_forward_distancex = scandistance[i]*sin(scanrange_radian);
+        }
     }
-    if(scanRange[i]<180&&scanRange[i]>90) {
-      left_back_angle = scanRange[i];
-      left_back_Distance = scanDistance[i];
+    if(scanrange[i]<165&&scanrange[i]>105) {
+      if(scandistance[i]*sin(scanrange_radian)<0.85 && scandistance[i]*sin(scanrange_radian)>0.55){
+        left_back_angle = scanrange[i];
+        left_back_distance = fabs(scandistance[i]*sin(scanrange_radian));
+      }
+    }
+    if(scanrange[i]>85 && scanrange[i]<95 && scandistance[i]>0){
+      left_boundary_distane = fabs(scandistance[i]);
+    }
+    if(scanrange[i]>265 && scanrange[i]<275 && scandistance[i]>0){
+      right_boundary_distane = fabs(scandistance[i]);
     }
   }
+  //2 meter first
   
-  if(right_forward_Distance != 0 && left_forward_Distance != 0){
+//判断是否看到环
+  if(((takeoff_flag && right_forward_distancex != 0 && left_forward_distancex != 0) 
+      || has_seem_flag)  && finished_cross_flag ){
+    ROS_INFO("Find one circle");
     // when find circle
-    search_circle_flag = true;
+    //search_circle_flag = true;
+    has_seem_flag = true;
+    scan_adjust_flag = true;
+    finished_cross_flag = false;
     //begin_cross_flag = true;
     //choose a suitable altitude
-    if(fabs(right_forward_Distance)+fabs(left_forward_Distance)<1.2){
-      if(dji_altitude<1.5){
-        exp_altitude=1.7;
-      }
-      if(dji_altitude>=1.5){
-        exp_altitude=1.3;
-      }
-    }
-  }else if(left_back_angle>135 && right_back_angle<225 && first_circle_flag){
-    //has been crossed the circle
-    search_circle_flag = false;
-    cross_flag = false;
-    scan_adjust_flag = true;
-    finished_cross_flag = true;
-    ROS_INFO("Ready to cross!");
+    // if(fabs(right_forward_distancex)+fabs(left_forward_distancex)<1.1){
+    //   if(dji_altitude<1.5){
+    //     exp_altitude=1.7;
+    //   }
+    //   if(dji_altitude>=1.5){
+    //     exp_altitude=1.3;
+    //   }
+    // }
+  // }else if((left_back_angle>135 || right_back_angle<225) && first_circle_flag && cross_flag){
+  //   //has been crossed the circle
+  //   search_circle_flag = false;
+  //   cross_flag = false;
+  //   scan_adjust_flag = false;
+  //   finished_cross_flag = true;
+  //   has_seem_flag = false;
+  //   ROS_INFO("Ready to cross!");
+
   }
 
 ///////////////////////////////////////// for search circle
 
-  if(takeoff_flag && !search_circle_flag){
-      ROS_INFO("Find next circle");
-    //search_circle_flag: true --> none cercle detect
-      throttle2 = exp_altitude-dji_altitude;
+  if(takeoff_flag && !has_seem_flag){
+      ROS_INFO("Find no circle");
+    //has_seem_flag: true --> none cercle detect
+      if((temp_right_forward_distancex + temp_left_forward_distancex) > 0 
+          && temp_left_forward_distancex>0 && temp_right_forward_distancex >0){
+        direction_y = 1;
+      }
+      if((temp_right_forward_distancex + temp_left_forward_distancex) < 0 
+          && temp_left_forward_distancex>0 && temp_right_forward_distancex >0){
+        direction_y = -1;
+      }
+      
+      if(distance_t265_y>3 || left_boundary_distane<1.2){
+        direction_y = -1;
+      }
+      if(distance_t265_y<-3 || right_boundary_distane<1.2){
+        direction_y = 1;
+      }
+      ROS_INFO("direction_y: %d",direction_y);
+      throttle2 = 0.24-dji_altitude;
+      throttle2 = speedLimit(-0.3,throttle2,0.3);
       controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0.2*direction_y);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
@@ -323,24 +395,24 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.clear();
       //5 is the boundary for search,it will be replaced in the real scence
       //t265 left-->positive
-      if(distance_t265_y>5){
-        direction_y = -1;
-      }
-      if(distance_t265_y<-5){
-        direction_y = 1;
-      }
+      
     }
+    
 ///////////////////////////////////////// for search circle
 
-    if(scan_adjust_flag && takeoff_flag && search_circle_flag) {
-      if(fabs(right_forward_Distance)<0.55||fabs(left_forward_Distance)<0.55) {
+    if(scan_adjust_flag && takeoff_flag && has_seem_flag) {
+      if((fabs(right_forward_distancex)<0.55||fabs(left_forward_distancex)<0.55)
+      &&right_forward_distancex != 0&&left_forward_distancex != 0) {
         forward_speed = 0;
-        ROS_INFO("ERROR");
+        ROS_INFO("ERROR,do not go ahead ,just adjust the distance of the left and the right");
       } else {
           forward_speed = 0.3;
       }
-      roll2 = right_forward_Distance+left_forward_Distance;
-      throttle2 = exp_altitude-dji_altitude;
+      roll2 = right_forward_distancex+left_forward_distancex;
+      roll2 = speedLimit(-0.3,roll2,0.3);
+      throttle2 =0.24-dji_altitude;
+      throttle2 = speedLimit(-0.3,throttle2,0.3);
+
       controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
@@ -348,21 +420,34 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();                //Very Important!!!!
-      ROS_INFO("left_forward_Distance: %.2f, right_forward_Distance: %.2f",left_forward_Distance,right_forward_Distance);
+      ROS_INFO("left_forward_distancex: %.2f, right_forward_distancex: %.2f,%.1f,%.1f",left_forward_distancex,right_forward_distancex,left_forward_angle,right_forward_angle);
       ROS_INFO("scan adjust control \n");
 
-      ROS_INFO("roll2: %.2f, pitch2: %.2f, thro2: %.2f",roll2,forward_speed,throttle2);
+      // ROS_INFO("roll2: %.2f, pitch2: %.2f, thro2: %.2f",roll2,forward_speed,throttle2);
 
-      if(left_forward_angle>50 && fabs(right_forward_Distance)>0.6 && fabs(left_forward_Distance)>0.6) {
+      if((left_forward_angle>42 && right_forward_angle<318) && (fabs(right_forward_distancex)>0.6 
+      && fabs(left_forward_distancex)>0.6 && !cross_flag) && !cross_flag){
         cross_flag = true;
         scan_adjust_flag = false;
         first_circle_flag = true;
-        circle_count++;
-        ROS_INFO("Ready to cross!");
+        has_seem_flag = false;  
+        ROS_INFO("Ready to cross!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!\n!!!!!!!!!!!!!!!!");
+        cross_begin_position = distance_t265_x;
+        cross_begin_time = clock();
       }
     }
 
     if(takeoff_flag && cross_flag) {
+      if((distance_t265_x-cross_begin_position)>2 || difftime(clock(),cross_begin_time) > 7000000) {
+        search_circle_flag = false;
+        cross_flag = false;
+        has_seem_flag = false;
+        circle_count++;
+        finished_cross_flag = true;
+      }
+      ROS_INFO("Circle_count: %d, diff_time: %.2f",circle_count,difftime(clock(),cross_begin_time));
+      //throttle2 = 0.24-dji_altitude;
+      throttle2 = speedLimit(-0.3,throttle2,0.3);
       controlVelYawRate.axes.push_back(0.3);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(0);     //throttle: up
@@ -370,7 +455,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();                //Very Important!!!!
-      ROS_INFO("left_forward_Distance: %.2f, right_forward_Distance: %.2f",left_forward_Distance,right_forward_Distance);
+      ROS_INFO("left_forward_distancex: %.2f, right_forward_distancex: %.2f,%.1f,%.1f",left_forward_distancex,right_forward_distancex,left_forward_angle,right_forward_angle);
       ROS_INFO("cross control \n");
       // if(left_angle>140) {
       //   land_flag = true;
@@ -378,12 +463,12 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       // }
     }
 
-    if(circle_count ==3) {
+    if(circle_count ==7) {
       ROS_INFO("M100 Landing!");
       M100monitoredLand();
     }   
-   // ROS_INFO("range: %d, distance: %.2f",(int)scanRange[i],scanDistance[i]);
-   //ROS_INFO("leftDistance: %.2f, rightDistance: %.2f",leftDistance,rightDistance);
+   // ROS_INFO("range: %d, distance: %.2f",(int)scanrange[i],scandistance[i]);
+   //ROS_INFO("leftdistance: %.2f, rightdistance: %.2f",leftdistance,rightdistance);
 }
 
 void heightCallback(const std_msgs::Float32::ConstPtr& msg)
@@ -396,10 +481,16 @@ void heightCallback(const std_msgs::Float32::ConstPtr& msg)
 
 void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
 {
+  distance_t265_x = msg->pose.pose.position.x;
   distance_t265_y = msg->pose.pose.position.y;
   // ROS_INFO("position: %.2f",distance_t265_y);
 }
 
+float speedLimit(float min_Speed,float speed,float max_Speed) {
+  if(speed>max_Speed) speed = max_Speed;
+  if(speed<min_Speed) speed = min_Speed;
+  return speed;
+}
 
 bool takeoff_land(int task)
 {
@@ -485,7 +576,7 @@ void display_mode_callback(const std_msgs::UInt8::ConstPtr& msg)
 
 /*!
  * This function demos how to use the flight_status
- * and the more detailed display_mode (only for A3/N3)
+ * and the more detailed Display_mode (only for A3/N3)
  * to monitor the take off process with some error
  * handling. Note M100 flight status is different
  * from A3/N3 flight status.
@@ -598,6 +689,7 @@ M100monitoredTakeoff()
   {
     start_time = ros::Time::now();
     ROS_INFO("Successful takeoff!");
+    takeoff_flag = true;
     ros::spinOnce();
   }
   return true;
@@ -610,7 +702,6 @@ bool set_local_position()
 
   return (bool)localPosReferenceSetter.response.result;
 }
-
 
 
 
