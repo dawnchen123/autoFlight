@@ -299,7 +299,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     scanrange_radian = scanrange[i]/180*3.14159;
     if(scanrange[i]>285){
       temp_right_forward_distancex = scandistance[i]*sin(scanrange_radian);
-      if(scandistance[i]*sin(scanrange_radian)>-0.85 && scandistance[i]*sin(scanrange_radian)<-0.55){
+      if(scandistance[i]*sin(scanrange_radian)>-1 && scandistance[i]*sin(scanrange_radian)<-0.4){
         right_forward_angle = scanrange[i];
         right_forward_distancex = scandistance[i]*sin(scanrange_radian);
       }
@@ -313,7 +313,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     }
     if(scanrange[i]>15 && scanrange[i]<75) {
        temp_left_forward_distancex = scandistance[i]*sin(scanrange_radian);
-      if(scandistance[i]*sin(scanrange_radian)<0.85 && scandistance[i]*sin(scanrange_radian)>0.55){
+      if(scandistance[i]*sin(scanrange_radian)<1.0 && scandistance[i]*sin(scanrange_radian)>0.4){
         left_forward_angle = scanrange[i];
         left_forward_distancex = scandistance[i]*sin(scanrange_radian);
         }
@@ -384,7 +384,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         direction_y = 1;
       }
       ROS_INFO("direction_y: %d",direction_y);
-      throttle2 = 0.24-dji_altitude;
+      throttle2 = 1.7-dji_altitude;
       throttle2 = speedLimit(-0.3,throttle2,0.3);
       controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0.2*direction_y);     //roll:  left    --> positive
@@ -410,7 +410,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       }
       roll2 = right_forward_distancex+left_forward_distancex;
       roll2 = speedLimit(-0.3,roll2,0.3);
-      throttle2 =0.24-dji_altitude;
+      throttle2 =1.7-dji_altitude;
       throttle2 = speedLimit(-0.3,throttle2,0.3);
 
       controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
@@ -438,7 +438,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     }
 
     if(takeoff_flag && cross_flag) {
-      if((distance_t265_x-cross_begin_position)>2 || difftime(clock(),cross_begin_time) > 7000000) {
+      if((distance_t265_x-cross_begin_position)>2 || difftime(clock(),cross_begin_time) > 500000) {
         search_circle_flag = false;
         cross_flag = false;
         has_seem_flag = false;
@@ -446,7 +446,9 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         finished_cross_flag = true;
       }
       ROS_INFO("Circle_count: %d, diff_time: %.2f",circle_count,difftime(clock(),cross_begin_time));
-      //throttle2 = 0.24-dji_altitude;
+      if(dji_altitude>1.0){
+        throttle2 = 1.7-dji_altitude;
+      }        
       throttle2 = speedLimit(-0.3,throttle2,0.3);
       controlVelYawRate.axes.push_back(0.3);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
