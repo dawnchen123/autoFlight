@@ -42,7 +42,7 @@ sensor_msgs::Joy controlVelYawRate;
 ///////////////////////////////////////////////////////////////////////////
 int circle_x, circle_y, radius;
 float pitch1,roll1,throttle1;
-float roll2,throttle2,yaw2;
+float roll2,throttle2;
 float Yaw1 = 0.0;
 float exp_altitude = 1.5;
 float right_forward_angle = 0;
@@ -55,8 +55,6 @@ float left_forward_distancex = 0;
 float left_forward_distancey = 0;
 float temp_right_forward_distancex = 0;
 float temp_left_forward_distancex = 0;
-float forward_left_distancex = 0;
-float forward_right_distancex = 0;
 float left_boundary_distane= 0;
 float right_boundary_distane= 0;
 float forward_boundary_distane= 0;
@@ -278,7 +276,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
   right_forward_angle = 0;
   right_back_angle = 0;
   right_back_distance = 0;
-  forward_right_distancex = 0;
+
   temp_right_forward_distancex = 0;
   temp_left_forward_distancex = 0;
 
@@ -286,7 +284,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
   left_forward_distancex = 0;
   left_back_angle = 0;
   left_back_distance = 0;
-  forward_left_distancex = 0;  
+
   right_boundary_distane = 3;
   left_boundary_distane = 3;
   //right_forward_distancey = 0;
@@ -304,8 +302,6 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       if(scandistance[i]*sin(scanrange_radian)>-1 && scandistance[i]*sin(scanrange_radian)<-0.4){
         right_forward_angle = scanrange[i];
         right_forward_distancex = scandistance[i]*sin(scanrange_radian);
-        forward_right_distancex = fabs(scandistance[i]*cos(scanrange_radian));
-
       }
       //right_forward_distancey = fabs(right_forward_distancex/)
     }
@@ -320,7 +316,6 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       if(scandistance[i]*sin(scanrange_radian)<1.0 && scandistance[i]*sin(scanrange_radian)>0.4){
         left_forward_angle = scanrange[i];
         left_forward_distancex = scandistance[i]*sin(scanrange_radian);
-        forward_left_distancex = fabs(scandistance[i]*cos(scanrange_radian));
         }
     }
     if(scanrange[i]<165&&scanrange[i]>105) {
@@ -394,11 +389,10 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0.2*direction_y);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
-      controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
+      controlVelYawRate.axes.push_back(0);     //yaw
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();
-      
       //5 is the boundary for search,it will be replaced in the real scence
       //t265 left-->positive
       
@@ -417,9 +411,8 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       roll2 = right_forward_distancex+left_forward_distancex;
       roll2 = speedLimit(-0.3,roll2,0.3);
       throttle2 =1.3-dji_altitude;
-      yaw2 = forward_right_distancex - forward_left_distancex;
       throttle2 = speedLimit(-0.3,throttle2,0.3);
-      yaw2 = speedLimit(-0.1,yaw2,0.1);
+
       controlVelYawRate.axes.push_back(forward_speed);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up

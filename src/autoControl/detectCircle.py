@@ -84,7 +84,7 @@ def detectCircle():
                 if(cv2.contourArea(contours[i])>17000 and cv2.contourArea(contours[i])<110000):
                     #最小外接圆
                     (x,y),radius  = cv2.minEnclosingCircle(contours[i])
-                    #center = (int(x),int(y))
+                    center = (int(x),int(y))
                     radius = int(radius)
                     #img = cv2.circle(img,center,radius,(0,255,0),2)
                     print(radius)
@@ -92,15 +92,15 @@ def detectCircle():
                     if(3.1415*radius*radius/cv2.contourArea(contours[i])<1.3):
                         cv2.drawContours(img,contours[i],-1,(0,0,255),3) 
                         #图像矩
-                        M=cv2.moments(contours[i])                    
-                        cx=int(M['m10']/M['m00'])
-                        cy=int(M['m01']/M['m00'])
-                        print(cv2.contourArea(contours[i]),cx,cy)
-                        circleCenter[0,0]=int(cx/2)
-                        circleCenter[1,0]=int(cy/2)
+                        # M=cv2.moments(contours[i])                    
+                        # cx=int(M['m10']/M['m00'])
+                        # cy=int(M['m01']/M['m00'])
+                        # print(cv2.contourArea(contours[i]),cx,cy)
+                        circleCenter[0,0]=int(center[0]/2)
+                        circleCenter[1,0]=int(center[1]/2)
                         circleCenter[2,0]=int(radius)
                         pub.publish(bridge.cv2_to_imgmsg(circleCenter, "mono8"))
-            img2 = cv2.resize(img,(160,120))
+            img2 = cv2.resize(img,(320,180))
             pub_Img.publish(bridge.cv2_to_imgmsg(img2, '8UC3'))
             # cv2.imshow('img',img)
             #cv2.imshow('canny',canny_img)
