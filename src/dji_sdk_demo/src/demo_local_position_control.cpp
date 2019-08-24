@@ -65,7 +65,6 @@ float left_boundary_distane= 0;
 float right_boundary_distane= 0;
 float forward_boundary_distane= 0;
 float back_boundary_distane= 0;
-float cross_begin_position = 0;
 float now_time = 0;
 float right_back_distance = 0;
 float left_back_distance = 0;
@@ -73,8 +72,6 @@ float original_distance = 0;
 float scanrange_radian = 0;
 float forward_speed = 0.3;
 float dji_altitude = 0;
-float distance_t265_y = 0;
-float distance_t265_x = 0;
 float back_last_distance = 0;
 float forward_last_distance = 0;
 int direction_y = -1;
@@ -142,7 +139,7 @@ int main(int argc, char** argv)
 
   ros::Subscriber heightSub = nh.subscribe("/dji_sdk/height_above_takeoff", 1, &heightCallback);
 
-  ros::Subscriber odomSub = nh.subscribe("/camera/odom/sample", 1, &odomCallback);
+  // ros::Subscriber odomSub = nh.subscribe("/camera/odom/sample", 1, &odomCallback);
 
 
   // Publish the control signal
@@ -480,7 +477,6 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         has_seem_flag = false; 
         int direction_y = -1; 
         ROS_INFO("Ready to cross!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!\n!!!!!!!!!!!!!!!!");
-        cross_begin_position = distance_t265_x;
         // cross_begin_time = clock();
         cross_time = ros::Time::now();
       }
@@ -537,7 +533,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       // }
     }
 
-    if(circle_count == 5) {
+    if(circle_count == 6) {
       search_tag_flag = true;
       // ROS_INFO("M100 Landing!");
       // M100monitoredLand();
@@ -1035,12 +1031,12 @@ void heightCallback(const std_msgs::Float32::ConstPtr& msg)
   }
 }
 
-void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
-{
-  distance_t265_x = msg->pose.pose.position.x;
-  distance_t265_y = msg->pose.pose.position.y;
-  // ROS_INFO("position: %.2f",distance_t265_y);
-}
+// void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
+// {
+//   distance_t265_x = msg->pose.pose.position.x;
+//   distance_t265_y = msg->pose.pose.position.y;
+//   // ROS_INFO("position: %.2f",distance_t265_y);
+// }
 
 float speedLimit(float min_Speed,float speed,float max_Speed) {
   if(speed>max_Speed) speed = max_Speed;
