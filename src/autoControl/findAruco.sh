@@ -18,5 +18,5 @@
 # chmod 777 /dev/rplidar
 
 cd /home/dji/autoFlight/src/autoControl/aruco-3.1.3/build/utils
-./aruco_ros live[1] camera.yml -s 0.1 -d ARUCO_MIP_36h12
+./aruco_ros live[1] camera.yml -s 0.1 -d ARUCO
 exit 0

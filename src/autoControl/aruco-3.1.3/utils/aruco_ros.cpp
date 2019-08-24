@@ -44,7 +44,7 @@ using namespace std;
 using namespace cv;
 using namespace aruco;
 
-int aruco_search[5]={137,86,182,17,23};
+int aruco_search[5]={106,219,615,999,759};
 int write_aruco[5] ={0,0,0,0,0};
 int aruco_searchArea[5] = {0,0,0,0,0};
 
