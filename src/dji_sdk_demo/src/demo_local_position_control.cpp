@@ -82,6 +82,7 @@ bool begin_cross_flag = false;
 bool has_seem_flag = false;
 bool search_tag_flag = false;
 bool cross_a_tag_flag = false;
+bool first_direction_flag = false;
 int right_angle = 0;
 int left_angle = 0;
 int circle_count = 0;
@@ -410,25 +411,27 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       //   direction_y = -1;
       // }
       pitch2 = 0;
-      if(circle_count == 0 ||circle_count == 3 || circle_count == 5 ){
+      if((circle_count == 0 ||circle_count == 3 || circle_count == 5) && !first_direction_flag){
         direction_y = -1; 
+	first_direction_flag = true;
         }
-        if(circle_count == 1 || circle_count == 2 || circle_count == 4 ){
+      if((circle_count == 1 || circle_count == 2 || circle_count == 4) && !first_direction_flag ){
         direction_y = 1; 
+	first_direction_flag = true;
         }
       ROS_INFO("circlr_count: %d",circle_count);
       ROS_INFO("left_boundary_distane: %.2f",left_boundary_distane);
       ROS_INFO("right_boundary_distane: %.2f",right_boundary_distane);
-      if( left_boundary_distane<1.6 && left_boundary_distane > 0.5){
+      if( left_boundary_distane<1.3 && left_boundary_distane !=0){
         direction_y = -1;
       }
-      if( right_boundary_distane<1.6 && right_boundary_distane > 0.5){
+      if( right_boundary_distane<1.3 && right_boundary_distane !=0){
         direction_y = 1;
       }
-      if(forward_last_distance<1 && forward_last_distance > 0.4){
+      if(forward_last_distance<1 && forward_last_distance !=0){
           pitch2 = -0.1;
       }
-      if(back_last_distance<1 && back_last_distance > 0.4){
+      if(back_last_distance<1 && back_last_distance !=0){
           pitch2 = 0.1;
       }
       pitch2 = speedLimit(-0.12,pitch2,0.12);
@@ -513,7 +516,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         has_seem_flag = false;
         circle_count++;
         finished_cross_flag = true;
-        
+        first_direction_flag = false;
         controlVelYawRate.axes.clear();                //Very Important!!!!
 
         ROS_INFO("Circle_count: %d     -------------___!!!!!!!!!!!!!!!!!!!----",circle_count);
@@ -606,14 +609,14 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
     ///////////////////////////////scan filering over,search tag begin
     switch(tag_fly_count){
       case 0:{
-        if(right_boundary_distane<1.2 && right_boundary_distane > 0.4){
+        if(right_boundary_distane<1.4 && right_boundary_distane !=0){
           tag_fly_count = 1;
         }
         pitch2 = 0;
-        if(forward_last_distance<0.9 && forward_last_distance > 0.4){
+        if(forward_last_distance<0.9 && forward_last_distance !=0){
           pitch2 = -0.1;
         }
-        if(back_last_distance<1  && back_last_distance >0.4){
+        if(back_last_distance<1  && back_last_distance !=0){
           pitch2 = 0.2;
         }
       pitch2 = speedLimit(-0.1,pitch2,0.2);
@@ -630,7 +633,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       }
       case 1:{
         ROS_INFO("case11111111111111111111111111 \n");
-        if(left_boundary_distane<1.2 && left_boundary_distane != 0){
+        if(left_boundary_distane<1.4 && left_boundary_distane != 0){
           tag_fly_count = 2;
           cross_time = ros::Time::now();
           break;
@@ -668,11 +671,11 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       //roll2 = fabs(right_boundary_distane-left_boundary_distane)*boundary_direction;
      // roll2 = speedLimit(-0.2,roll2,0.2);
 
-    while (ros::Time::now() - cross_time < ros::Duration(2))
+    while (ros::Time::now() - cross_time < ros::Duration(1))
       {
-          dji_altitude = 1.0;
-        
-        throttle2 = 1-dji_altitude;         
+          
+    
+        throttle2 = 1.1-dji_altitude;         
         throttle2 = speedLimit(-0.3,throttle2,0.3);
         controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
         controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
@@ -685,8 +688,8 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         ROS_INFO("cross control_gogogo \n");
         // ros::spinOnce();
       }
-      if(ros::Time::now() - cross_time > ros::Duration(2)){ 
-        roll2 = 0;
+      if(ros::Time::now() - cross_time > ros::Duration(1)){ 
+        roll2 = -0.05;
         pitch2 = 0.3;
         if(left_boundary_distane<0.8 && left_boundary_distane != 0){
           roll2 = -0.2;
@@ -697,10 +700,12 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
           roll2 = 0.2;
           pitch2 = 0.1;
         }
-        if(right_boundary_distane>0.5){
+        if(right_boundary_distane>0.5 && !cross_a_tag_flag){
           cross_a_tag_flag = true;
+          cross_time = ros::Time::now();
         }
-        if(cross_a_tag_flag && ( (forward_last_distance<1.6 && forward_last_distance != 0) || back_right_distance>1.0) ){
+        if(cross_a_tag_flag && ( (forward_last_distance<1.6 && forward_last_distance != 0) || 
+        back_right_distance>1.0 || ros::Time::now() - cross_time > ros::Duration(7)) ){
           tag_fly_count = 3;
           cross_a_tag_flag = false;
           break;
@@ -722,15 +727,16 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       }
       case 3:{
         ROS_INFO("case33333333333333333333333 \n");
-        if(right_boundary_distane<1.2 && right_boundary_distane != 0){
+        if(right_boundary_distane<1.4 && right_boundary_distane !=0){
           tag_fly_count = 4;
+          cross_time = ros::Time::now();
           break;
         }
         pitch2 = 0;
-        if(forward_last_distance<1 && forward_last_distance != 0){
+        if(forward_last_distance<1 && forward_last_distance > 0.5){
           pitch2 = -0.2;
         }
-        if(back_last_distance<1 && back_last_distance != 0){
+        if(back_last_distance<1 && back_last_distance >0.5 ){
           pitch2 = 0.2;
         }
       pitch2 = speedLimit(-0.2,pitch2,0.2);
@@ -746,8 +752,9 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       break;
       }
       case 4:{
-        ROS_INFO("case4444444444444444444444444444 \n");
-        //  if(right_boundary_distane != 0 && left_boundary_distane != 0){
+
+        ROS_INFO("case444444444444444444 \n");
+        // if(right_boundary_distane != 0 && left_boundary_distane != 0){
         //   if(right_boundary_distane>left_boundary_distane){
         //     boundary_direction = -1;
         //   }else{
@@ -756,35 +763,75 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         // }else{
         //   boundary_direction = 0;
         //   }
-        //roll2 = fabs(right_boundary_distane-left_boundary_distane)*boundary_direction;
-        //roll2 = speedLimit(-0.2,roll2,0.2);
-        
+      //roll2 = fabs(right_boundary_distane-left_boundary_distane)*boundary_direction;
+     // roll2 = speedLimit(-0.2,roll2,0.2);
+
+    while (ros::Time::now() - cross_time < ros::Duration(4))
+      {
+          
         pitch2 = 0;
-        if(forward_last_distance<1 && forward_last_distance != 0){
+        if(forward_last_distance<0.9 && forward_last_distance > 0.4){
           pitch2 = -0.1;
         }
-        if(back_last_distance<1 && back_last_distance != 0){
-          pitch2 = 0.1;
+        if(back_last_distance<1  && back_last_distance >0.4){
+          pitch2 = 0.2;
         }
-        if(forward_last_distance>0.65){
-          cross_a_tag_flag = true;
-        }
-        if(cross_a_tag_flag && ((fabs(left_forward_distance) <1.3 && fabs(left_forward_distance) >0)||
-        (fabs(left_back_distance) <0.7 && fabs(left_back_distance) >0) ) ){
-          tag_fly_count = 5;
-          cross_a_tag_flag = false;
-          break;
-        }
-      throttle2 = 1.1-dji_altitude;
-      throttle2 = speedLimit(-0.2,throttle2,0.2);
-      controlVelYawRate.axes.push_back(pitch2);     //pitch: forward --> positive
-      controlVelYawRate.axes.push_back(0.3);     //roll:  left    --> positive
-      controlVelYawRate.axes.push_back(throttle2);     //throttle: up
-      controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
-      controlVelYawRate.axes.push_back(flag);
-      ctrlFlightPub.publish(controlVelYawRate);
-      controlVelYawRate.axes.clear();
-      break;
+        throttle2 = 1.1-dji_altitude;         
+        throttle2 = speedLimit(-0.3,throttle2,0.3);
+        controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
+        controlVelYawRate.axes.push_back(0.3);     //roll:  left    --> positive
+        controlVelYawRate.axes.push_back(throttle2);     //throttle: up
+        controlVelYawRate.axes.push_back(0);     //yaw
+        controlVelYawRate.axes.push_back(flag);
+        ctrlFlightPub.publish(controlVelYawRate);
+        ros::Duration(0.01).sleep();
+
+        // ROS_INFO("cross control_gogogo \n");
+        // ros::spinOnce();
+      }
+      if(ros::Time::now() - cross_time > ros::Duration(4)){ 
+        tag_fly_count = 5;
+      }
+
+      //   ROS_INFO("case4444444444444444444444444444 \n");
+      //   //  if(right_boundary_distane != 0 && left_boundary_distane != 0){
+      //   //   if(right_boundary_distane>left_boundary_distane){
+      //   //     boundary_direction = -1;
+      //   //   }else{
+      //   //     boundary_direction = 1;
+      //   //   }
+      //   // }else{
+      //   //   boundary_direction = 0;
+      //   //   }
+      //   //roll2 = fabs(right_boundary_distane-left_boundary_distane)*boundary_direction;
+      //   //roll2 = speedLimit(-0.2,roll2,0.2);
+        
+      //   pitch2 = 0;
+      //   if(forward_last_distance<1 && forward_last_distance != 0){
+      //     pitch2 = -0.1;
+      //   }
+      //   if(back_last_distance<1 && back_last_distance != 0){
+      //     pitch2 = 0.1;
+      //   }
+      //   if(forward_last_distance>0.65){
+      //     cross_a_tag_flag = true;
+      //   }
+      //   if(cross_a_tag_flag && ((fabs(left_forward_distance) <1.3 && fabs(left_forward_distance) >0)||
+      //   (fabs(left_back_distance) <0.7 && fabs(left_back_distance) >0) ) ){
+      //     tag_fly_count = 5;
+      //     cross_a_tag_flag = false;
+      //     break;
+      //   }
+      // throttle2 = 1.1-dji_altitude;
+      // throttle2 = speedLimit(-0.2,throttle2,0.2);
+      // controlVelYawRate.axes.push_back(pitch2);     //pitch: forward --> positive
+      // controlVelYawRate.axes.push_back(0.3);     //roll:  left    --> positive
+      // controlVelYawRate.axes.push_back(throttle2);     //throttle: up
+      // controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
+      // controlVelYawRate.axes.push_back(flag);
+      // ctrlFlightPub.publish(controlVelYawRate);
+      // controlVelYawRate.axes.clear();
+      // break;
       }
       case 5:{
         ROS_INFO("case555555555555555555555555 \n");
@@ -792,16 +839,17 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         //   tag_fly_count = 6;
         // }
         // pitch2 = 0;
+        roll2 = 0;
         if(left_boundary_distane<1 && left_boundary_distane != 0){
           roll2 = -0.15;
         }
         if(right_boundary_distane<1 && right_boundary_distane != 0){
           roll2 = 0.15;
         }
-        if(left_boundary_distane > 0.8 && left_boundary_distane <2.5){
+        if(left_boundary_distane > 0.8 && left_boundary_distane <2){
           cross_a_tag_flag = true;
         }
-        if(cross_a_tag_flag && (back_left_distance>1.3 || back_right_distance >1.3) ) {
+        if(cross_a_tag_flag && (back_left_distance>1.8 || back_right_distance >1.8) ) {
           cross_a_tag_flag = false;
           tag_fly_count = 7;
           break;
@@ -810,7 +858,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       throttle2 = 1.1-dji_altitude;
       throttle2 = speedLimit(-0.2,throttle2,0.2);
       controlVelYawRate.axes.push_back(0.2);     //pitch: forward --> positive
-      controlVelYawRate.axes.push_back(0.2);     //roll:  left    --> positive
+      controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
       controlVelYawRate.axes.push_back(throttle2);     //throttle: up
       controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
       controlVelYawRate.axes.push_back(flag);
@@ -879,8 +927,9 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       // }
       case 7:{
         ROS_INFO("case7777777777777777777777\n");
-        if(left_boundary_distane<1.3 && left_boundary_distane != 0){
+        if(left_boundary_distane<1.4 && left_boundary_distane != 0){
           tag_fly_count = 8;
+          cross_time = ros::Time::now();
           break;
         }
         pitch2 = 0;
@@ -931,32 +980,33 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
       case 8:{
         ROS_INFO("case888888888888888\n");
          
-        if(forward_last_distance > 0.55 ){
-          cross_a_tag_flag = true;
-        }
-        if(cross_a_tag_flag && (fabs(left_forward_distance)>0.9 || fabs(right_forward_distance <1.2))) {
-          cross_a_tag_flag = false;
-          tag_fly_count = 9;
-          break;
-        }
+        while (ros::Time::now() - cross_time < ros::Duration(10))
+      {
+          
         pitch2 = 0;
-        if(forward_last_distance<1 && forward_last_distance != 0){
+        if(forward_last_distance<0.9 && forward_last_distance > 0.4){
           pitch2 = -0.2;
         }
-        if(back_last_distance<1 && back_last_distance != 0){
+        if(back_last_distance<1  && back_last_distance >0.4){
           pitch2 = 0.2;
         }
-      pitch2 = speedLimit(-0.2,pitch2,0.2);
-      throttle2 = 1.1-dji_altitude;
-      throttle2 = speedLimit(-0.2,throttle2,0.2);
-      controlVelYawRate.axes.push_back(pitch2);     //pitch: forward --> positive
-      controlVelYawRate.axes.push_back(-0.3);     //roll:  left    --> positive
-      controlVelYawRate.axes.push_back(throttle2);     //throttle: up
-      controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
-      controlVelYawRate.axes.push_back(flag);
-      ctrlFlightPub.publish(controlVelYawRate);
-      controlVelYawRate.axes.clear();
-      break;
+        throttle2 = 1.1-dji_altitude;         
+        throttle2 = speedLimit(-0.3,throttle2,0.3);
+        controlVelYawRate.axes.push_back(pitch2);     //pitch: forward --> positive
+        controlVelYawRate.axes.push_back(-0.3);     //roll:  left    --> positive
+        controlVelYawRate.axes.push_back(throttle2);     //throttle: up
+        controlVelYawRate.axes.push_back(0);     //yaw
+        controlVelYawRate.axes.push_back(flag);
+        ctrlFlightPub.publish(controlVelYawRate);
+        ros::Duration(0.01).sleep();
+
+        // ROS_INFO("cross control_gogogo \n");
+        // ros::spinOnce();
+      }
+      if(ros::Time::now() - cross_time > ros::Duration(4)){ 
+       M100monitoredLand();
+      }
+
       }
       case 9:{
         ROS_INFO("case999999999999999\n");
@@ -964,34 +1014,33 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         //   tag_fly_count = 6;
         // }
         // pitch2 = 0;
-        if(left_boundary_distane<0.8 && left_boundary_distane != 0){
+        while (ros::Time::now() - cross_time < ros::Duration(4))
+      {
+          
+        roll2 = 0;
+        if(left_boundary_distane<1 && left_boundary_distane != 0){
           roll2 = -0.15;
         }
-        if(right_boundary_distane<0.8 && right_boundary_distane != 0){
+        if(right_boundary_distane<1 && right_boundary_distane != 0){
           roll2 = 0.15;
         }
-        if(left_boundary_distane > 0.6 && left_boundary_distane <2.5){
-          cross_a_tag_flag = true;
-        }
-        if(cross_a_tag_flag && ( (back_right_distance >1.4 && back_right_distance != 0) ||
-        (back_left_distance >1.4 && back_left_distance != 0) ) ) {
-          cross_a_tag_flag = false;
-          tag_fly_count = 10;
-          cross_time = ros::Time::now();
-          break;
-        }
-      pitch2 = speedLimit(-0.2,pitch2,0.2);
-      throttle2 = 1.1-dji_altitude;
-      throttle2 = speedLimit(-0.2,throttle2,0.2);
-      roll2 = speedLimit(-0.2,roll2,0.2);
-      controlVelYawRate.axes.push_back(0.2);     //pitch: forward --> positive
-      controlVelYawRate.axes.push_back(0.2);     //roll:  left    --> positive
-      controlVelYawRate.axes.push_back(throttle2);     //throttle: up
-      controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
-      controlVelYawRate.axes.push_back(flag);
-      ctrlFlightPub.publish(controlVelYawRate);
-      controlVelYawRate.axes.clear();
-      break;
+        throttle2 = 1.1-dji_altitude;         
+        throttle2 = speedLimit(-0.3,throttle2,0.3);
+        controlVelYawRate.axes.push_back(0.3);     //pitch: forward --> positive
+        controlVelYawRate.axes.push_back(roll2);     //roll:  left    --> positive
+        controlVelYawRate.axes.push_back(throttle2);     //throttle: up
+        controlVelYawRate.axes.push_back(0);     //yaw
+        controlVelYawRate.axes.push_back(flag);
+        ctrlFlightPub.publish(controlVelYawRate);
+        ros::Duration(0.01).sleep();
+
+        // ROS_INFO("cross control_gogogo \n");
+        // ros::spinOnce();
+      }
+      if(ros::Time::now() - cross_time > ros::Duration(4)){ 
+        tag_fly_count = 9;
+        cross_time = ros::Time::now();
+      }
       }
       case 10:{
         ROS_INFO("case1010101010101011010101010\n");
@@ -1252,7 +1301,7 @@ M100monitoredTakeoff()
   }
   if(takeoff_flag && !start_flag) {
 
-    while (ros::Time::now() - start_time < ros::Duration(5))
+    while (ros::Time::now() - start_time < ros::Duration(4))
     {
       ROS_INFO("dji_altitude: %.2f",dji_altitude);
       throttle2 = 1.3-dji_altitude;         
@@ -1319,3 +1368,4 @@ M100monitoredLand()
 
   return true;
 }
+

@@ -31,7 +31,7 @@ def scan_callback(msg):
     circle_angle = []
     #print(len(msg.ranges))   #1440 max
     for i in range(len(msg.ranges)):
-        if(msg.ranges[i]<3 and msg.ranges[i]>0.4):
+        if(msg.ranges[i]<3 and msg.ranges[i]>0.5):
             # tmp_angle = math.pi*2*i/1440
             # tmp_radius = math.sin(tmp_angle)*msg.ranges[i]
             #print(i,msg.ranges[i])
