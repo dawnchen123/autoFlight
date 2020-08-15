@@ -19,7 +19,7 @@ planner_points = Marker()
 start_t = 0
 
 
-rospy.init_node('vins_estimator', anonymous=True)
+rospy.init_node('realsense2_camera', anonymous=True)
 pub_currentVelocity = rospy.Publisher('/control/velocity', Float32MultiArray, queue_size=1)
 
 def callback_position(msg):
@@ -47,7 +47,7 @@ def callback_planning(msg):
     
 def listener():
  
-    vins_topic = "/vins_estimator/odometry"
+    vins_topic = "/camera/odom/sample"
     plan_topic = "/planning_vis/trajectory"
 
     
@@ -69,8 +69,8 @@ if __name__ == '__main__':
             cur_distance=0
 
 
-            dx = planner_list[0][0] + odom_y     # odom_y: backward -> positive
-            dy = planner_list[0][1] - odom_x
+            dx = planner_list[0][0] - odom_x     # odom_y: backward -> positive
+            dy = planner_list[0][1] - odom_y
             dz = planner_list[0][2] - odom_z
             cur_distance = math.sqrt(dx*dx+dy*dy+dz*dz)
             

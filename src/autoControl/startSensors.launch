@@ -1,7 +1,11 @@
 <launch>
     <include file="$(find dji_sdk)/launch/sdk.launch" />
     <include file="$(find zed_wrapper)/launch/zed_camera.launch" /> 
-    <include file="$(find realsense2_camera)/launch/rs_t265.launch" />
+    <include file="$(find realsense2_camera)/launch/demo_t265.launch" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_world" args="0 0 0 3.15 0 0 base_link world 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="world_to_camera_odom_frame" args="0 0 0 0 0 0 world camera_odom_frame 100"/>
+    <include file="$(find plan_manage)/launch/kino_replan.launch" />
+
     <!-- <include file="$(find usb_cam)/launch/usb_cam.launch" /> -->
     <!--<include file="$(find ultrasonic)/launch/ultrasonic.launch" />-->
 </launch>

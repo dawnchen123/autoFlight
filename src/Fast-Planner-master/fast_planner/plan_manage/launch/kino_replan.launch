@@ -5,7 +5,8 @@
   <arg name="map_size_z" value=" 5.0"/>
 
   <!-- topic of your odometry such as VIO or LIO -->
-  <arg name="odom_topic" value="/vins_estimator/odometry" />
+  <!-- <arg name="odom_topic" value="/vins_estimator/odometry" /> -->
+  <arg name="odom_topic" value="/camera/odom/sample" />
 
   <!-- <arg name="odom_topic" value="/state_ukf/odom" /> -->
 

@@ -1,7 +1,8 @@
 <launch>
-    <include file="$(find vins_estimator)/launch/realsense_fisheye.launch" />
+    <!-- <include file="$(find vins_estimator)/launch/realsense_fisheye.launch" /> -->
 
+  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_world" args="0 0 0 3.15 0 0 base_link world 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="world_to_odom_vins" args="0 0 0 1.57 0 0 world odom_vins 100"/> -->
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_world" args="0 0 0 3.15 0 0 base_link world 100"/>
-  <node pkg="tf" type="static_transform_publisher" name="world_to_odom_vins" args="0 0 0 1.57 0 0 world odom_vins 100"/>
-
+  <node pkg="tf" type="static_transform_publisher" name="world_to_camera_odom_frame" args="0 0 0 0 0 0 world camera_odom_frame 100"/>
 </launch>
