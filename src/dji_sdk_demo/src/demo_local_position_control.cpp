@@ -188,7 +188,7 @@ void velocityCallback(const std_msgs::Float32MultiArray::ConstPtr& msg)
   float pitch= velocity_x*0.1;
   float direction_y = velocity_y*0.1;
   float throttle = velocity_z*0.1;
-  if (takeoff_flag){
+  if (start_flag && dji_altitude<2){
       pitch = speedLimit(-0.12,pitch,0.12);
       direction_y = speedLimit(-0.12,direction_y,0.12);
       throttle = speedLimit(-0.3,throttle,0.3);
@@ -202,6 +202,16 @@ void velocityCallback(const std_msgs::Float32MultiArray::ConstPtr& msg)
       controlVelYawRate.axes.push_back(flag);
       ctrlFlightPub.publish(controlVelYawRate);
       controlVelYawRate.axes.clear();
+  } else {
+      controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
+      controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
+      controlVelYawRate.axes.push_back(0);     //throttle: up
+      controlVelYawRate.axes.push_back(0);     //yaw positive->nishizhen max 0.1
+      controlVelYawRate.axes.push_back(flag);
+      ctrlFlightPub.publish(controlVelYawRate);
+      controlVelYawRate.axes.clear();
+      std::cout<<"hold on !!!!"<<std::endl;
+
   }
 
 
@@ -464,25 +474,25 @@ M100monitoredTakeoff()
     start_time = ros::Time::now();
     ros::spinOnce();
   }
-  // if(takeoff_flag && !start_flag) {
+  if(takeoff_flag && !start_flag) {
 
-  //   while (ros::Time::now() - start_time < ros::Duration(4))
-  //   {
-  //     ROS_INFO("dji_altitude: %.2f",dji_altitude);
-  //     throttle2 = 1.3-dji_altitude;         
-  //     throttle2 = speedLimit(-0.3,throttle2,0.3);
-  //     controlVelYawRate.axes.push_back(0.4);     //pitch: forward --> positive
-  //     controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
-  //     controlVelYawRate.axes.push_back(throttle2);     //throttle: up
-  //     controlVelYawRate.axes.push_back(0);     //yaw
-  //     controlVelYawRate.axes.push_back(flag);
-  //     ctrlFlightPub.publish(controlVelYawRate);
-  //     controlVelYawRate.axes.clear();
-  //     ros::Duration(0.01).sleep();
-  //     ros::spinOnce();
-  //   }
-  //   start_flag = true;
-  // }
+    while (ros::Time::now() - start_time < ros::Duration(4))
+    {
+      ROS_INFO("dji_altitude: %.2f",dji_altitude);
+      throttle2 = 1.3-dji_altitude;         
+      throttle2 = speedLimit(-0.3,throttle2,0.3);
+      controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
+      controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
+      controlVelYawRate.axes.push_back(throttle2);     //throttle: up
+      controlVelYawRate.axes.push_back(0);     //yaw
+      controlVelYawRate.axes.push_back(flag);
+      ctrlFlightPub.publish(controlVelYawRate);
+      controlVelYawRate.axes.clear();
+      ros::Duration(0.01).sleep();
+      ros::spinOnce();
+    }
+    start_flag = true;
+  }
   return true;
 }
 
