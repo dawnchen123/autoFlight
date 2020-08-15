@@ -173,7 +173,7 @@ void PlanningVisualization::drawBsplinesPhase2(vector<NonUniformBspline>& bsplin
                 getColor(double(i) / bsplines.size()), 50 + i, 50 + i);
   }
 }
-
+//ture path
 void PlanningVisualization::drawBspline(NonUniformBspline& bspline, double size,
                                         const Eigen::Vector4d& color, bool show_ctrl_pts, double size2,
                                         const Eigen::Vector4d& color2, int id1, int id2) {
@@ -293,10 +293,10 @@ void PlanningVisualization::drawGoal(Eigen::Vector3d goal, double resolution,
   vector<Eigen::Vector3d> goal_vec = { goal };
   displaySphereList(goal_vec, resolution, color, GOAL + id % 100);
 }
-
+//dawn modify
 void PlanningVisualization::drawGeometricPath(const vector<Eigen::Vector3d>& path, double resolution,
                                               const Eigen::Vector4d& color, int id) {
-  displaySphereList(path, resolution, color, PATH + id % 100);
+  // displaySphereList(path, resolution, color, PATH + id % 100);
 }
 
 void PlanningVisualization::drawPolynomialTraj(PolynomialTraj poly_traj, double resolution,

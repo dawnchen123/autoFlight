@@ -466,6 +466,7 @@ void FastPlannerManager::optimizeTopoBspline(double start_t, double duration,
   Eigen::MatrixXd opt_ctrl_pts1 = bspline_optimizers_[traj_id]->BsplineOptimizeTraj(
       ctrl_pts, dt, BsplineOptimizer::GUIDE_PHASE, 0, 1);
 
+//dawn modify
   plan_data_.topo_traj_pos1_[traj_id] = NonUniformBspline(opt_ctrl_pts1, 3, dt);
 
   tm2 = (ros::Time::now() - t1).toSec();

@@ -28,7 +28,7 @@
 #include <nav_msgs/Odometry.h>
 
 #include <std_msgs/Float32.h>
-#include <std_msgs/Float32MultiArray.h>
+#include <sensor_msgs/LaserScan.h>
 #include <cv_bridge/cv_bridge.h> 
 #include <sensor_msgs/image_encodings.h> 
 #include <image_transport/image_transport.h> 
@@ -143,7 +143,7 @@ public:
 };
 
 // void imageCalllback(const sensor_msgs::ImageConstPtr& msg); 
-void velocityCallback(const std_msgs::Float32MultiArray::ConstPtr& msg);
+void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
 void heightCallback(const std_msgs::Float32::ConstPtr& msg);
 void odomCallback(const nav_msgs::Odometry::ConstPtr& msg);
 float speedLimit(float min_Speed,float speed,float max_Speed);
