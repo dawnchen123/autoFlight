@@ -185,12 +185,12 @@ void velocityCallback(const std_msgs::Float32MultiArray::ConstPtr& msg)
   float velocity_z = msg->data[2];
   
 
-  float pitch= velocity_x*0.1;
-  float direction_y = velocity_y*0.1;
-  float throttle = velocity_z*0.1;
-  if (start_flag && dji_altitude<2){
-      pitch = speedLimit(-0.12,pitch,0.12);
-      direction_y = speedLimit(-0.12,direction_y,0.12);
+  float pitch= velocity_x*0.3;
+  float direction_y = velocity_y*0.3;
+  float throttle = velocity_z*0.3;
+  if (start_flag && dji_altitude<4){
+      pitch = speedLimit(-0.3,pitch,0.3);
+      direction_y = speedLimit(-0.3,direction_y,0.3);
       throttle = speedLimit(-0.3,throttle,0.3);
 
       std::cout<<pitch<<","<<direction_y<<","<<throttle<<std::endl;
@@ -479,7 +479,7 @@ M100monitoredTakeoff()
     while (ros::Time::now() - start_time < ros::Duration(4))
     {
       ROS_INFO("dji_altitude: %.2f",dji_altitude);
-      throttle2 = 1.3-dji_altitude;         
+      throttle2 = 1.0-dji_altitude;         
       throttle2 = speedLimit(-0.3,throttle2,0.3);
       controlVelYawRate.axes.push_back(0);     //pitch: forward --> positive
       controlVelYawRate.axes.push_back(0);     //roll:  left    --> positive
