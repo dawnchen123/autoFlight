@@ -1,8 +1,8 @@
 <launch>
   <!-- size of map, change the size in x, y, z according to your application -->
-  <arg name="map_size_x" value="5.0"/>
-  <arg name="map_size_y" value="6.0"/>
-  <arg name="map_size_z" value="3.0"/>
+  <arg name="map_size_x" value="50.0"/>
+  <arg name="map_size_y" value="30.0"/>
+  <arg name="map_size_z" value="5.0"/>
 
   <!-- topic of your odometry such as VIO or LIO -->
   <!-- <arg name="odom_topic" value="/vins_estimator/odometry" /> -->
@@ -45,7 +45,7 @@
     
     <!-- global waypoints -->
     <!-- If flight_type is set to 2, the drone will travel these waypoints one by one -->
-    <arg name="point_num" value="2" />
+    <arg name="point_num" value="0" />
 
     <arg name="point0_x" value="19.0" />
     <arg name="point0_y" value="0.0" />

@@ -5,7 +5,7 @@
     <node pkg="tf" type="static_transform_publisher" name="camera_link_to_base_link" args="0 0 0 0 0 0 camera_link base_link 30"/>
     <node pkg="tf" type="static_transform_publisher" name="world_to_camera_odom_frame" args="0 0 0 0 0 0 world camera_odom_frame 30"/> 
    <!-- <node pkg="tf" type="static_transform_publisher" name="camera_link_to_world" args="0 0 0 0 0 0 camera_link world 30"/> -->
-    <!--<include file="$(find plan_manage)/launch/kino_replan.launch" /> -->
+    <!-- <include file="$(find plan_manage)/launch/kino_replan.launch" />  -->
 
     <!-- <include file="$(find usb_cam)/launch/usb_cam.launch" /> -->
     <!--<include file="$(find ultrasonic)/launch/ultrasonic.launch" />-->
